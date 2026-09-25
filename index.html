@@ -1,130 +1,336 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#8b5e83">
-  <title>SnD FlowerBox Ponorogo - Kasir</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="topbar">
-    <div>
-      <h1>🌸 SnD FlowerBox Ponorogo</h1>
-      <p>Kasir & penyewaan papan bunga</p>
-    </div>
-    <button id="clearAllBtn" class="btn btn-light">Reset Data</button>
-  </header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <main class="container">
+    <meta name="theme-color" content="#8b5e83">
+
+    <title>SnD FlowerBox Ponorogo - Kasir</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div>
+        <h1>🌸 SnD FlowerBox Ponorogo</h1>
+        <p>Kasir & Penyewaan Papan Bunga</p>
+    </div>
+
+    <button id="clearAllBtn" class="btn btn-light">
+        Reset Data
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <!-- STATISTIK -->
     <section class="stats">
-      <div class="stat"><span>Total Pesanan</span><strong id="statOrders">0</strong></div>
-      <div class="stat"><span>Pendapatan</span><strong id="statRevenue">Rp 0</strong></div>
-      <div class="stat"><span>Belum Lunas</span><strong id="statUnpaid">0</strong></div>
-      <div class="stat"><span>Sedang Disewa</span><strong id="statRented">0</strong></div>
+
+        <div class="stat">
+            <span>Total Pesanan</span>
+            <strong id="statOrders">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Pendapatan</span>
+            <strong id="statRevenue">Rp 0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Belum Lunas</span>
+            <strong id="statUnpaid">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Sedang Disewa</span>
+            <strong id="statRented">0</strong>
+        </div>
+
     </section>
 
+
     <div class="grid">
-      <section class="card">
-        <div class="card-title">
-          <div><h2>🧾 Transaksi Baru</h2><p>Isi data pesanan pelanggan.</p></div>
-          <span id="orderNo" class="order-badge"></span>
-        </div>
 
-        <form id="orderForm">
-          <div class="form-grid">
-            <label>Nama pelanggan *
-              <input id="customer" required placeholder="Nama pelanggan">
-            </label>
-            <label>No. WhatsApp *
-              <input id="phone" required inputmode="tel" placeholder="08xxxxxxxxxx">
-            </label>
+        <!-- TRANSAKSI -->
+        <section class="card">
 
-            <label>Jenis papan *
-              <select id="product" required>
-                <option value="">Pilih papan</option>
-                <option>Akrilik Bulat Putih</option>
-                <option>Akrilik Bulat Hitam</option>
-                <option>Kubah Putih</option>
-                <option>Kubah Hitam</option>
-                <option>Ring Besi</option>
-                <option>Custom</option>
-              </select>
-            </label>
-    
-            <label>Harga sewa *
-              <input id="rent" type="number" min="0" value="0" required>
-            </label>
+            <div class="card-title">
 
-            <label>Tanggal kirim *
-              <input id="startDate" type="date" required>
-            </label>
-            <label>Tanggal ambil *
-              <input id="endDate" type="date" required>
-            </label>
+                <div>
+                    <h2>🧾 Transaksi Baru</h2>
+                    <p>Isi data pelanggan dan produk.</p>
+                </div>
 
-            <!-- <label>Selendang
-              <select id="sash">
-                <option value="Tidak">Tidak</option>
-                <option value="Pakai">Pakai</option>
-              </select>
-            </label>
-            <label>Biaya selendang
-              <input id="sashCost" type="number" min="0" value="0">
-            </label> -->
+                <span id="orderNo" class="order-badge"></span>
 
-            <label>Biaya pengiriman
-              <input id="delivery" type="number" min="0" value="0">
-            </label>
-            <label>DP / pembayaran
-              <input id="dp" type="number" min="0" value="0">
-            </label>
-          </div>
+            </div>
 
-          <!-- <label>Tulisan papan bunga *
-            <textarea id="message" required rows="4" placeholder="Contoh: Selamat & Sukses atas..."></textarea>
-          </label> -->
 
-          <label>Catatan
-            <textarea id="notes" rows="2" placeholder="Catatan tambahan (opsional)"></textarea>
-          </label>
+            <form id="orderForm">
 
-          <div class="total-box">
-            <div><span>Total</span><strong id="total">Rp 0</strong></div>
-            <div><span>Sisa</span><strong id="balance">Rp 0</strong></div>
-          </div>
+                <!-- DATA PELANGGAN -->
+                <div class="form-grid">
 
-          <div class="actions">
-            <button class="btn btn-primary" type="submit">✓ Buat Pesanan</button>
-            <button class="btn btn-secondary" type="button" id="previewBtn">Preview Nota</button>
-            <button class="btn btn-light" type="button" id="newBtn">Kosongkan</button>
-          </div>
-        </form>
-      </section>
+                    <label>
+                        Nama pelanggan *
+                        <input
+                            id="customer"
+                            required
+                            placeholder="Nama pelanggan">
+                    </label>
 
-      <section class="card">
-        <div class="card-title">
-          <div><h2>📋 Riwayat Transaksi</h2><p>Tersimpan di browser perangkat ini.</p></div>
-        </div>
-        <input id="search" class="search" placeholder="Cari nama, nomor, atau papan...">
-        <div id="history" class="history"></div>
-      </section>
+
+                    <label>
+                        No. WhatsApp *
+                        <input
+                            id="phone"
+                            required
+                            inputmode="tel"
+                            placeholder="08xxxxxxxxxx">
+                    </label>
+
+
+                    <label>
+                        Tanggal kirim *
+                        <input
+                            id="startDate"
+                            type="date"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Tanggal ambil *
+                        <input
+                            id="endDate"
+                            type="date"
+                            required>
+                    </label>
+
+                </div>
+
+
+                <!-- PRODUK -->
+                <div class="product-header">
+
+                    <div>
+                        <h3>🌸 Produk Pesanan</h3>
+                        <p>
+                            Tambahkan beberapa produk jika diperlukan.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="addProductBtn"
+                        class="btn btn-secondary">
+
+                        + Tambah Produk
+
+                    </button>
+
+                </div>
+
+
+                <div id="productsContainer"></div>
+
+
+                <!-- PENGIRIMAN DAN DP -->
+                <div class="form-grid">
+
+                    <label>
+                        Biaya pengiriman
+                        <input
+                            id="delivery"
+                            type="number"
+                            min="0"
+                            value="0">
+                    </label>
+
+
+                    <label>
+                        DP / pembayaran
+                        <input
+                            id="dp"
+                            type="number"
+                            min="0"
+                            value="0">
+                    </label>
+
+                </div>
+
+
+                <!-- CATATAN -->
+                <label>
+                    Catatan
+                    <textarea
+                        id="notes"
+                        rows="2"
+                        placeholder="Catatan tambahan (opsional)"></textarea>
+                </label>
+
+
+                <!-- TOTAL -->
+                <div class="total-box">
+
+                    <div>
+                        <span>Subtotal Produk</span>
+                        <strong id="subtotal">Rp 0</strong>
+                    </div>
+
+                    <div>
+                        <span>Pengiriman</span>
+                        <strong id="deliveryTotal">Rp 0</strong>
+                    </div>
+
+                    <div class="grand-total">
+                        <span>TOTAL</span>
+                        <strong id="total">Rp 0</strong>
+                    </div>
+
+                    <div>
+                        <span>DP / Pembayaran</span>
+                        <strong id="paidTotal">Rp 0</strong>
+                    </div>
+
+                    <div class="balance">
+                        <span>SISA</span>
+                        <strong id="balance">Rp 0</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTON -->
+                <div class="actions">
+
+                    <button
+                        class="btn btn-primary"
+                        type="submit">
+
+                        ✓ Buat Pesanan
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-secondary"
+                        type="button"
+                        id="previewBtn">
+
+                        Preview Nota
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-light"
+                        type="button"
+                        id="newBtn">
+
+                        Kosongkan
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- RIWAYAT -->
+        <section class="card">
+
+            <div class="card-title">
+
+                <div>
+                    <h2>📋 Riwayat Transaksi</h2>
+
+                    <p>
+                        Data tersimpan di browser perangkat ini.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <input
+                id="search"
+                class="search"
+                placeholder="Cari nama, nomor, atau produk...">
+
+
+            <div id="history" class="history"></div>
+
+        </section>
+
     </div>
-  </main>
 
-  <div id="modal" class="modal hidden">
+</main>
+
+
+<!-- MODAL NOTA -->
+<div id="modal" class="modal hidden">
+
     <div class="modal-content">
-      <button id="closeModal" class="close">×</button>
-      <div id="receipt" class="receipt"></div>
-      <div class="receipt-actions">
-        <button id="downloadBtn" class="btn btn-primary">⬇ Download Gambar</button>
-        <button id="waBtn" class="btn btn-wa">💬 Kirim WhatsApp</button>
-        <button id="printBtn" class="btn btn-secondary">🖨 Cetak</button>
-      </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="script.js"></script>
+        <button
+            id="closeModal"
+            class="close">
+
+            ×
+
+        </button>
+
+
+        <div id="receipt" class="receipt"></div>
+
+
+        <div class="receipt-actions">
+
+            <button
+                id="downloadBtn"
+                class="btn btn-primary">
+
+                ⬇ Download Gambar
+
+            </button>
+
+
+            <button
+                id="waBtn"
+                class="btn btn-wa">
+
+                💬 Kirim WhatsApp
+
+            </button>
+
+
+            <button
+                id="printBtn"
+                class="btn btn-secondary">
+
+                🖨 Cetak
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script src="script.js"></script>
+
 </body>
 </html>
