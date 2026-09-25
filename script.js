@@ -402,7 +402,7 @@ function showReceipt(order){
     ${order.notes?`<div class="receipt-notes"><strong>Catatan:</strong><p>${escapeHTML(order.notes)}</p></div>`:""}
     <div class="receipt-footer">
       <p>Terima kasih telah menggunakan</p>
-      <strong>SnD FlowerBox Ponorogo 🌸</strong>
+      <strong>SnD.Flowerboxponorogo</strong>
     </div>
   `;
   modal.classList.remove("hidden");
