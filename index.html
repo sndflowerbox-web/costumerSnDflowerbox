@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b5e83">
+  <meta name="description" content="Kasir dan penyewaan papan bunga SnD FlowerBox Ponorogo">
+  <title>SnD FlowerBox Ponorogo - Kasir</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-icon">🌸</div>
+    <div>
+      <h1>SnD FlowerBox Ponorogo</h1>
+      <p>Kasir & penyewaan papan bunga</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="exportBtn" class="btn btn-top">Backup Data</button>
+    <label class="btn btn-top file-btn">
+      Import Data
+      <input id="importInput" type="file" accept=".json" hidden>
+    </label>
+    <button id="clearAllBtn" class="btn btn-top">Reset Data</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="stats">
+    <div class="stat">
+      <span>Total Pesanan</span>
+      <strong id="statOrders">0</strong>
+      <small>Semua transaksi</small>
+    </div>
+    <div class="stat">
+      <span>Pendapatan</span>
+      <strong id="statRevenue">Rp 0</strong>
+      <small>Total pembayaran masuk</small>
+    </div>
+    <div class="stat">
+      <span>Belum Lunas</span>
+      <strong id="statUnpaid">0</strong>
+      <small>Masih memiliki sisa</small>
+    </div>
+    <div class="stat">
+      <span>Sedang Disewa</span>
+      <strong id="statRented">0</strong>
+      <small>Aktif hari ini</small>
+    </div>
+  </section>
+
+  <div class="grid">
+
+    <section class="card transaction-card">
+      <div class="card-title">
+        <div>
+          <h2>🧾 Transaksi Baru</h2>
+          <p>Isi data pelanggan dan produk pesanan.</p>
+        </div>
+        <span id="orderNo" class="order-badge"></span>
+      </div>
+
+      <form id="orderForm" autocomplete="off">
+
+        <div class="section-label">Data Pelanggan</div>
+
+        <div class="form-grid">
+          <label>
+            Nama pelanggan *
+            <input id="customer" required placeholder="Nama pelanggan">
+          </label>
+          <label>
+            No. WhatsApp *
+            <input id="phone" required inputmode="tel" placeholder="08xxxxxxxxxx">
+          </label>
+          <label>
+            Tanggal kirim *
+            <input id="startDate" type="date" required>
+          </label>
+          <label>
+            Tanggal ambil *
+            <input id="endDate" type="date" required>
+          </label>
+        </div>
+
+        <div class="product-header">
+          <div>
+            <div class="section-label no-margin">Produk Pesanan</div>
+            <p>Harga tiap produk dihitung dari jumlah × harga satuan.</p>
+          </div>
+          <button type="button" id="addProductBtn" class="btn btn-secondary">＋ Tambah Produk</button>
+        </div>
+
+        <div id="productsContainer"></div>
+
+        <div class="quick-price-note">
+          💡 Anda dapat mengubah harga setiap produk sesuai pesanan pelanggan.
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Biaya pengiriman
+            <input id="delivery" type="number" min="0" step="1000" value="0" inputmode="numeric">
+          </label>
+          <label>
+            DP / pembayaran
+            <input id="dp" type="number" min="0" step="1000" value="0" inputmode="numeric">
+          </label>
+        </div>
+
+        <label>
+          Catatan
+          <textarea id="notes" rows="2" placeholder="Contoh: kirim pagi, warna bunga pink, dll."></textarea>
+        </label>
+
+        <div class="total-box">
+          <div><span>Subtotal Produk</span><strong id="subtotal">Rp 0</strong></div>
+          <div><span>Pengiriman</span><strong id="deliveryTotal">Rp 0</strong></div>
+          <div class="grand-total"><span>TOTAL</span><strong id="total">Rp 0</strong></div>
+          <div><span>DP / Pembayaran</span><strong id="paidTotal">Rp 0</strong></div>
+          <div class="balance"><span>SISA</span><strong id="balance">Rp 0</strong></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">✓ Buat Pesanan</button>
+          <button class="btn btn-secondary" type="button" id="previewBtn">Preview Nota</button>
+          <button class="btn btn-light" type="button" id="newBtn">Kosongkan</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        <div>
+          <h2>📋 Riwayat Transaksi</h2>
+          <p>Tersimpan di browser perangkat ini.</p>
+        </div>
+      </div>
+
+      <div class="history-tools">
+        <input id="search" class="search" placeholder="Cari nama, nomor, produk, atau nomor nota...">
+        <select id="statusFilter" class="filter">
+          <option value="all">Semua status</option>
+          <option value="unpaid">Belum lunas</option>
+          <option value="paid">Lunas</option>
+          <option value="rented">Sedang disewa</option>
+        </select>
+      </div>
+
+      <div id="history" class="history"></div>
+    </section>
+
+  </div>
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <button id="closeModal" class="close">×</button>
+    <div id="receipt" class="receipt"></div>
+    <div class="receipt-actions">
+      <button id="downloadBtn" class="btn btn-primary">⬇ Download Gambar</button>
+      <button id="waBtn" class="btn btn-wa">💬 Kirim WhatsApp</button>
+      <button id="printBtn" class="btn btn-secondary">🖨 Cetak</button>
+      <button id="closeReceiptBtn" class="btn btn-light">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
