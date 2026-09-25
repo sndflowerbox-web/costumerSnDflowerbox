@@ -375,8 +375,8 @@ function showReceipt(order){
 
   receipt.innerHTML=`
     <div class="receipt-header">
-      <h1>🌸 SnD FlowerBox Ponorogo</h1>
-      <p>Kasir & Penyewaan Papan Bunga</p>
+     <img src="sndlogo1.png" alt="SnD.flowerboxponorogo">
+      <p>INVOICE</p>
     </div>
     <div class="receipt-line"></div>
     <div class="receipt-number">
@@ -460,7 +460,7 @@ function createWhatsAppMessage(order){
 
   return `Halo Kak ${order.customer} 👋
 
-Terima kasih sudah melakukan pemesanan di *SnD FlowerBox Ponorogo* 🌸
+Terima kasih sudah melakukan pemesanan di *SnD.flowerboxponorogo* 🌸
 
 🧾 *DETAIL PESANAN*
 No. Pesanan: ${order.orderNo}
