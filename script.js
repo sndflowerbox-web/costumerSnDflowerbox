@@ -373,13 +373,12 @@ function showReceipt(order){
     </tr>
   `).join("");
 
-  receipt.innerHTML=`
-    <div class="receipt-header">
-    <h1>
-  <img src="sndlogo1.png" class="receipt-logo" alt="SnDflowerboxponorogo">
-</h1>
-      <p>INVOICE</p>
-    </div>
+   receipt.innerHTML = `
+  <div class="receipt-header">
+    <img src="sndlogo1.png" class="receipt-logo" alt="SnD.flowerboxponorogo">
+    <h1>SnD.flowerboxponorogo</h1>
+    <p>INVOICE</p>
+  </div>
     <div class="receipt-line"></div>
     <div class="receipt-number">
       <strong>${escapeHTML(order.orderNo)}</strong>
