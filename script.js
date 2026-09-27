@@ -375,7 +375,7 @@ function showReceipt(order){
 
    receipt.innerHTML = `
   <div class="receipt-header">
-    <img src="sndlogo1.png" class="receipt-logo" alt="SnD.flowerboxponorogo">
+    // <img src="sndlogo1.png" class="receipt-logo" alt="SnD.flowerboxponorogo">
     <h1>SnD.flowerboxponorogo</h1>
     <p>INVOICE</p>
   </div>
