@@ -377,7 +377,7 @@ function showReceipt(order){
   
     <div class="receipt-header">
     <h1>
-  <img src="sndlogo2.png" class="receipt-logo" alt="SnD Flowerbox">
+  <img src="sndlogo1.png" class="receipt-logo" alt="SnD Flowerbox">
   SnD.Flowerboxponorogo
 </h1>
      <h1>🌸 SnD.Flowerboxponorogo 🌸</h1>
