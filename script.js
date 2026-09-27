@@ -402,8 +402,9 @@ function showReceipt(order){
     <div class="receipt-row balance-row"><span>SISA</span><strong>${rupiah(order.balance)}</strong></div>
     ${order.notes?`<div class="receipt-notes"><strong>Catatan:</strong><p>${escapeHTML(order.notes)}</p></div>`:""}
     <div class="receipt-footer">
-      <p>Terima kasih telah menggunakan</p>
-      <strong>SnD.Flowerboxponorogo</strong>
+       <h1>
+  <img src="sndsosmed.png" class="receipt-logo" alt="SnDflowerboxponorogo">
+    </h1>
     </div>
   `;
   modal.classList.remove("hidden");
